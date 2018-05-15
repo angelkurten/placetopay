@@ -10,6 +10,6 @@ class PayController extends Controller
     public function home()
     {
         $ptp = new PlaceToPay();
-        return $ptp->bankList();
+        return $ptp->getBankList();
     }
 }

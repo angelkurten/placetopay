@@ -3,31 +3,32 @@
 namespace App\Libraries;
 
 
+use Illuminate\Filesystem\Cache;
+
 class PlaceToPay
 {
 
-    private $wsdl = null;
+    private static $WSDL = 'https://test.placetopay.com/soap/pse/?wsdl';
+    private static $ENCODING = 'UTF-8';
     private $key = null;
+    private $soapClient;
 
     public function __construct() {
 
-        $this->wsdl = 'https://test.placetopay.com/soap/pse/?wsdl';
-        $this->key = '024h1IlD';
+        $this->soapClient = new \SoapClient(self::$WSDL, array('trace' => 1));
     }
 
-    public function bankList() {
-        $client = new \SoapClient($this->wsdl, array("trace" => 1));
+    public function getBankList()
+    {
+            try {
+                $result = $this->soapClient->getBankList($this->auth());
+                $banks = $result->getBankListResult->item;
 
-        try {
-            $banks = $client->getBankList(array('auth'  => $this->auth()));
-
-        } catch (\Exception $ex) {
-            dd($ex);
-            $banks = array();
-        }
-        return $banks;
+            } catch (\Exception $e) {
+                dd($e);
+            }
+        return is_array($banks) ? $banks : false;
     }
-
 
     private function auth() {
         $seed = date('c');
@@ -37,7 +38,9 @@ class PlaceToPay
             'tranKey' => $hash,
             'seed' => $seed
         );
-        return $credentials;
+
+
+        return (object) $credentials;
     }
 
 
