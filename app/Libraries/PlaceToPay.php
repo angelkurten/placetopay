@@ -10,7 +10,7 @@ class PlaceToPay
 
     private static $WSDL = 'https://test.placetopay.com/soap/pse/?wsdl';
     private static $ENCODING = 'UTF-8';
-    private $key = null;
+    private $key = '024h1IlD';
     private $soapClient;
 
     public function __construct() {
@@ -32,15 +32,28 @@ class PlaceToPay
 
     private function auth() {
         $seed = date('c');
+
         $hash = sha1($seed . $this->key, false);
         $credentials = array(
             'login' => '6dd490faf9cb87a9862245da41170ff2',
             'tranKey' => $hash,
-            'seed' => $seed
+            'seed' => $seed,
         );
 
-
         return (object) $credentials;
+    }
+
+    private function nonce() {
+
+        if (function_exists('random_bytes')) {
+            $nonce = bin2hex(random_bytes(16));
+        } elseif (function_exists('openssl_random_pseudo_bytes')) {
+            $nonce = bin2hex(openssl_random_pseudo_bytes(16));
+        } else {
+            $nonce = mt_rand();
+        }
+
+        return base64_encode($nonce);
     }
 
 
