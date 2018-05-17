@@ -16,7 +16,7 @@ trait GetBanks
         if(is_null($banks))
         {
             try {
-                $result = $this->soapClient->getBankList($this->auth());
+                $result = $this->soapClient->getBankList(['auth'=>$this->auth()]);
                 $banks = $result->getBankListResult->item;
                 Cache::put('banks', $banks, 1440);
             } catch (\Exception $e) {
