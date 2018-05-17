@@ -26,6 +26,8 @@ class PayController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
+
         $this->ptp = new PlaceToPay();
         try {
             $this->wizard = new Wizard($this->steps, $sessionKeyName = 'transaction');
