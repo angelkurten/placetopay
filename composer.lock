@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "379c5d3bbc3711c52e5d98b9762b2a79",
+    "content-hash": "2a3f3a0dfd4089834ddd1afc7eeada62",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -455,16 +455,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.21",
+            "version": "v5.6.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28"
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/458a89b1c5ff73072c27308566f444c790f76f28",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/637fd797a6dde8d24a9f07da77e375ec251c5d24",
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24",
                 "shasum": ""
             },
             "require": {
@@ -590,7 +590,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-05-08T13:30:15+00:00"
+            "time": "2018-05-15T13:34:20+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1332,6 +1332,50 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
+        },
+        {
+            "name": "smajti1/laravel-wizard",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smajti1/laravel-wizard.git",
+                "reference": "82a9a91ea7dd330771650cb6aaf92e3312695614"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smajti1/laravel-wizard/zipball/82a9a91ea7dd330771650cb6aaf92e3312695614",
+                "reference": "82a9a91ea7dd330771650cb6aaf92e3312695614",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "~5.5",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Smajti1\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hubert Dziubiński",
+                    "email": "smajti1@gmail.com"
+                }
+            ],
+            "description": "Wizard component for laravel5.",
+            "keywords": [
+                "laravel",
+                "wizard"
+            ],
+            "time": "2017-09-23T13:42:51+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

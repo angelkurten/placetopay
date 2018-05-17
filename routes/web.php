@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', 'PayController@home');
-Route::get('/create', 'PayController@formPayment');
-Route::post('/create', 'PayController@createPayment');
-Route::post('/update', 'PayController@endPayment');
-Route::get('/update', 'PayController@endPayment');
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/pay/{step?}', 'PayController@create')->name('pay_create');
+Route::post('/pay/{step}', 'PayController@store')->name('pay_store');
+
+Route::get('/transaction/{reference}', 'PayController@show')->name('transaction_show');
