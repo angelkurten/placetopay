@@ -11,6 +11,7 @@ class PlaceToPay
 
     use GetBanks;
     use CreateTransaction;
+    use GetTransactionInformation;
 
     private static $WSDL = 'https://test.placetopay.com/soap/pse/?wsdl';
     private static $LOCATION = 'https://test.placetopay.com/soap/pse';

@@ -10,14 +10,10 @@ trait CreateTransaction
 
     public function createTransaction(PSETransactionRequest $transaction)
     {
-        try {
-            $response = $this->soapClient->createTransaction([
-                'auth' => $this->auth(),
-                'transaction' =>  [$transaction]
-            ]);
-        } catch (\Exception $e) {
-            dd($e->getTrace());
-        }
+        $response = $this->soapClient->createTransaction([
+            'auth' => $this->auth(),
+            'transaction' =>  $transaction
+        ]);
 
         $response = $response->createTransactionResult;
 

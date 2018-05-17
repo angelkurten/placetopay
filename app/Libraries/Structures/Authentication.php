@@ -51,10 +51,10 @@ class Authentication
      */
     public function credentials()
     {
-        return ['auth'=> [
+        return [
             'login' => $this->login,
             'tranKey' => $this->tranKey,
             'seed' => $this->seed,
-        ]];
+        ];
     }
 }

@@ -7,6 +7,7 @@ use App\Steps\SetBankInformationStep;
 use App\Steps\SetPayStep;
 use App\Steps\SetPersonStep;
 use App\Steps\SetProductStep;
+use App\Transaction;
 use Illuminate\Http\Request;
 use Smajti1\Laravel\Exceptions\StepNotFoundException;
 use Smajti1\Laravel\Wizard;
@@ -58,8 +59,33 @@ class PayController extends Controller
         }
 
         $this->validate($request, $step->rules($request));
-        $step->process($request);
+        $result = $step->process($request);
+
+        if(is_object($result)){
+            return $result;
+        }
 
         return redirect()->route('pay_create', [$this->wizard->nextSlug()]);
     }
+
+    public function show(Request $request, $reference)
+    {
+        $transaction = Transaction::where('reference', $reference)->firstOrFail();
+
+        if($transaction->resolveUpdate($request))
+        {
+
+            $transactionData = $this->ptp->getTransactionInformation($transaction->transactionID);
+            $transaction->fill($transactionData);
+            if (! $transaction->wasChanged()) {
+                $transaction->touch();
+            }
+            $transaction->save();
+        }
+
+        return view('transaction', compact('transaction'));
+    }
+
+
+
 }
